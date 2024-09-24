@@ -1,0 +1,1 @@
+class_name sub extends OverheadCarBody2D

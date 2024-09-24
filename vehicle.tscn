@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq2u2wcykt57n"]
+
+[ext_resource type="Script" path="res://vehicle.gd" id="1_d8cql"]
+[ext_resource type="Texture2D" uid="uid://botas3y8iwlwo" path="res://player.png" id="2_spakx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys6gn"]
+size = Vector2(62, 124)
+
+[node name="vehicle" type="CharacterBody2D"]
+script = ExtResource("1_d8cql")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_spakx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ys6gn")

@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://dte21b7bcwmsi"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_2um00"]
+[ext_resource type="Script" path="res://godot-overhead-car-2d/lib/overhead_car_2d/overhead_car_path_follow_2d.gd" id="3_qdh8r"]
+[ext_resource type="PackedScene" uid="uid://dp3ktjwv3pme7" path="res://overhead_car_body_2d.tscn" id="4_753fy"]
+[ext_resource type="PackedScene" uid="uid://cqsnfcknb4vmt" path="res://overhead_player.tscn" id="4_ebxlg"]
+[ext_resource type="Script" path="res://sub.gd" id="4_j523d"]
+[ext_resource type="PackedScene" uid="uid://bq2u2wcykt57n" path="res://vehicle.tscn" id="6_kpmbg"]
+
+[sub_resource type="Curve2D" id="Curve2D_0kqas"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1323, -1549, 0, 0, 0, 0, -1011, -1624, 0, 0, 0, 0, -361, -1593, 0, 0, 0, 0, 54, -1612, 0, 0, 0, 0, 439.994, -1709, 0, 0, 0, 0, 840.994, -1581, 0, 0, 0, 0, 1053, -1232, 0, 0, 0, 0, 1042, -760, 0, 0, 0, 0, 823, -470, 0, 0, 0, 0, 116, -401, 0, 0, 0, 0, -1363, -475, 0, 0, 0, 0, -1749, -637, 0, 0, 0, 0, -2010, -1063, 0, 0, 0, 0, -1947, -1418, 0, 0, 0, 0, -1622, -1459, 0, 0, 0, 0, -1517, -1526, 0, 0, 0, 0, -1326, -1553)
+}
+point_count = 17
+
+[sub_resource type="Curve2D" id="Curve2D_vlp1a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 735, -91, 0, 0, 0, 0, 1513, -487, 0, 0, 0, 0, 1405, -1358, 0, 0, 0, 0, 488, -1985, 0, 0, 0, 0, -784, -1876, 0, 0, 0, 0, -1737, -1893, 0, 0, 0, 0, -2341, -1509, 0, 0, 0, 0, -2323, -938, 0, 0, 0, 0, -2167, -288, 0, 0, 0, 0, -1143, 13, 0, 0, 0, 0, 20, 114, 0, 0, 0, 0, 736, -93)
+}
+point_count = 12
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_2um00")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-103, -1041)
+scale = Vector2(1.6195, 1.6195)
+polygon = PackedVector2Array(-40, -49, 95, -115, 193, -42, 191, 108, 12, 226, -387, 213, -577, 146, -625, -149, -367, -217, -291, 53, -110, 90)
+
+[node name="inner" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0kqas")
+
+[node name="OverheadCarPathFollow2D" type="Node" parent="inner"]
+script = ExtResource("3_qdh8r")
+min_target_distance = 200
+
+[node name="PathFollow2D" type="PathFollow2D" parent="inner"]
+position = Vector2(-1323, -1549)
+rotation = -0.235909
+
+[node name="sub2" parent="." instance=ExtResource("4_753fy")]
+position = Vector2(-1490, -491)
+rotation = 3.14159
+script = ExtResource("4_j523d")
+max_engine_power = 900
+
+[node name="sub" parent="." instance=ExtResource("4_753fy")]
+position = Vector2(-1623, -542)
+rotation = -3.14159
+script = ExtResource("4_j523d")
+max_engine_power = 850
+max_steering_degrees = 20
+
+[node name="sub3" parent="." instance=ExtResource("4_753fy")]
+position = Vector2(-1623, -542)
+rotation = -3.14159
+script = ExtResource("4_j523d")
+max_engine_power = 790
+max_steering_degrees = 20
+
+[node name="sub4" parent="." instance=ExtResource("4_753fy")]
+position = Vector2(-1623, -542)
+rotation = -3.14159
+script = ExtResource("4_j523d")
+max_engine_power = 1000
+max_steering_degrees = 20
+
+[node name="OverheadCarBody2D" parent="." instance=ExtResource("4_753fy")]
+position = Vector2(-1879, -826)
+rotation = 3.14159
+
+[node name="gamer" parent="." instance=ExtResource("4_ebxlg")]
+position = Vector2(-1243, -826)
+scale = Vector2(1.4, 1.4)
+
+[node name="outer_car2" parent="." instance=ExtResource("4_753fy")]
+position = Vector2(-0.00134277, 0.00408936)
+rotation = 5.07036e-06
+script = ExtResource("4_j523d")
+max_engine_power = 1000
+max_steering_degrees = 20
+
+[node name="outer_car" parent="." instance=ExtResource("4_753fy")]
+position = Vector2(-1623, -542)
+rotation = -3.14159
+script = ExtResource("4_j523d")
+max_engine_power = 1000
+max_steering_degrees = 20
+
+[node name="outer" type="Path2D" parent="."]
+curve = SubResource("Curve2D_vlp1a")
+
+[node name="OverheadCarPathFollow2D" type="Node" parent="outer"]
+script = ExtResource("3_qdh8r")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="outer"]
+position = Vector2(735, -91)
+rotation = -0.47082
+
+[node name="vehicle" parent="." instance=ExtResource("6_kpmbg")]
+position = Vector2(-553, 0)
+
+[connection signal="path_follow_ready" from="inner/OverheadCarPathFollow2D" to="sub2" method="_on_overhead_car_path_follow_2d_path_follow_ready"]
+[connection signal="path_follow_ready" from="inner/OverheadCarPathFollow2D" to="sub" method="_on_overhead_car_path_follow_2d_path_follow_ready"]
+[connection signal="path_follow_ready" from="inner/OverheadCarPathFollow2D" to="sub3" method="_on_overhead_car_path_follow_2d_path_follow_ready"]
+[connection signal="path_follow_ready" from="inner/OverheadCarPathFollow2D" to="sub4" method="_on_overhead_car_path_follow_2d_path_follow_ready"]
+[connection signal="path_follow_ready" from="inner/OverheadCarPathFollow2D" to="OverheadCarBody2D" method="_on_overhead_car_path_follow_2d_path_follow_ready"]
+[connection signal="path_follow_ready" from="outer/OverheadCarPathFollow2D" to="outer_car2" method="_on_overhead_car_path_follow_2d_path_follow_ready"]
+[connection signal="path_follow_ready" from="outer/OverheadCarPathFollow2D" to="outer_car" method="_on_overhead_car_path_follow_2d_path_follow_ready"]

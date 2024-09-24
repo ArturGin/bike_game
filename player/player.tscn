@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bphfdscp2r23s"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_vcqie"]
+[ext_resource type="Texture2D" uid="uid://pac4ucppoleb" path="res://icon.svg" id="2_dxxbk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yyw3a"]
+height = 64.0
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(101, 115)
+scale = Vector2(3, 3)
+script = ExtResource("1_vcqie")
+engine_power = 20000
+drag = -0.005
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.15625, 0.515625)
+texture = ExtResource("2_dxxbk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yyw3a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
